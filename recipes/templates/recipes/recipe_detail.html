@@ -1,0 +1,34 @@
+{% extends 'recipes/base.html' %}
+
+{% block title %}{{ recipe.title }}{% endblock %}
+{% block description %}A recipe for {{ recipe.title|lower }}.{% endblock %}
+
+{% block content %}
+  <p class="home"><a href="{% url 'main' %}">&xlarr; Search</a></p>
+  <div class="recipe">
+    <h1>{{ recipe.title }}</h1>
+    {% if recipe.tags.all %}
+    <div class="tags">
+      {% for tag in recipe.tags.all %}
+      <div class="tag">{{ tag.name }}</div>
+      {% endfor %}
+    </div>
+    {% endif %}
+    {% if recipe.time_in_mins %}
+    <p class="prep-time">Start to finish: {{ recipe.preptime }}</p>
+    {% endif %}
+    {% if recipe.spiel %}
+      {{ recipe.spiel|safe }}
+    {% endif %}
+    <div class="main-event">
+      <div class="ingredients">
+        <h3>Ingredients</h3>
+        {{ recipe.ingredients|safe }}
+      </div>
+      <div class="instructions">
+        <h3>Instructions</h3>
+        {{ recipe.instructions|safe }}
+      </div>
+    </div>
+  </div>
+{% endblock %}
