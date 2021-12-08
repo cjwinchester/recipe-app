@@ -18,7 +18,9 @@
     <p class="prep-time">Start to finish: {{ recipe.preptime }}</p>
     {% endif %}
     {% if recipe.spiel %}
-      {{ recipe.spiel|safe }}
+      <div id="extra">
+        {{ recipe.spiel|safe }}
+      </div>
     {% endif %}
     <div class="main-event">
       <div class="ingredients">
