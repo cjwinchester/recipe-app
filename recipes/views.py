@@ -1,9 +1,9 @@
-from recipes.models import Recipe
+from recipes.models import Recipe, Tag
 
 from bakery.views import BuildableDetailView, BuildableListView
 
 
-class MainView(BuildableListView):
+class RecipeListView(BuildableListView):
     model = Recipe
     context_object_name = 'recipes'
 
@@ -11,3 +11,8 @@ class MainView(BuildableListView):
 class RecipeView(BuildableDetailView):
     model = Recipe
     context_object_name = 'recipe'
+
+
+class TagView(BuildableDetailView):
+    model = Tag
+    context_object_name = 'tag'

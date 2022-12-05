@@ -1,0 +1,10 @@
+{% extends 'recipes/base.html' %}
+
+{% block content %}
+  <h1>Categories</h1>
+  {% for tag in tags %}
+  <h2 class="recipe-result">
+    <a href="{% url 'tag_detail' tag.slug %}">{{ tag.name }}</a>
+  </h2>
+  {% endfor %}
+{% endblock %}

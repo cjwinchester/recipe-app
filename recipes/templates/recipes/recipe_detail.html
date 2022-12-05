@@ -4,13 +4,13 @@
 {% block description %}A recipe for {{ recipe.title|lower }}.{% endblock %}
 
 {% block content %}
-  <p class="home"><a href="{% url 'main' %}">&xlarr; Search</a></p>
+  <p class="home"><a href="{% url 'recipe_list' %}">&xlarr; Search</a></p>
   <div class="recipe">
     <h1>{{ recipe.title }}</h1>
     {% if recipe.tags.all %}
     <div class="tags">
       {% for tag in recipe.tags.all %}
-      <div class="tag">{{ tag.name }}</div>
+      <div class="tag"><a href="{% url 'tag_detail' tag.slug %}">{{ tag.name }}</a></div>
       {% endfor %}
     </div>
     {% endif %}
@@ -32,5 +32,18 @@
         {{ recipe.instructions|safe }}
       </div>
     </div>
+
+    {% if recipe.related_recipes.all %}
+      <div id="related">
+        <h3>Related recipes</h3>
+        <ul>
+        {% for recipe in recipe.related_recipes.all %}
+          <li>
+            <a href="{% url 'recipe_detail' recipe.slug %}">{{ recipe.title }}</a>
+          </li>
+        {% endfor %}
+        </ul>
+      </div>
+    {% endif %}
   </div>
 {% endblock %}

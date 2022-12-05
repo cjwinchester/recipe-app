@@ -4,12 +4,17 @@
 <div class="recipe-search">
   <h1 class="cookbook">Cookbook</h1>
   <input type="text" id="search" />
-  <p class="suggestions">Examples: <a href="#" class="example">Pasta</a>, <a href="#" class="example">Dessert</a>, <a href="#" class="example">Slow cooker</a></p>
+  <p class="suggestions">Examples: <a href="#" class="example">Chicken</a>, <a href="#" class="example">Dessert</a>, <a href="#" class="example">Slow cooker</a></p>
   <div class="recipe-list">
     {% for r in recipes %}
-    <h2 class="recipe-result" data-keywords="{{ r.searchterms }}">
-      <a href="{% url 'detail' r.slug %}">{{ r.title }}</a>
-    </h2>
+    <div class="recipe-result" data-keywords="{{ r.searchterms }}" style="margin-top: 30px;">
+      <h2>
+        <a href="{% url 'recipe_detail' r.slug %}">{{ r.title }}</a>
+      </h2>
+      {% for tag in r.tags.all %}
+      <div class="tag"><a href="{% url 'tag_detail' tag.slug %}">{{ tag.name }}</a></div>
+      {% endfor %}
+    </div>
     {% endfor %}
   </div>
 </div>

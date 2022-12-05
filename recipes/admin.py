@@ -7,7 +7,10 @@ class RecipeAdmin(admin.ModelAdmin):
     save_on_top = True
     exclude = ('slug',)
     search_fields = ['title']
-    filter_horizontal = ('tags',)
+    filter_horizontal = ('tags', 'related_recipes',)
 
 
-admin.site.register(Tag)
+@admin.register(Tag)
+class TagAdmin(admin.ModelAdmin):
+    save_on_top = True
+    exclude = ('slug',)
